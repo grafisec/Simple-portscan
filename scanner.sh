@@ -21,10 +21,10 @@ declare -a ports=( $(seq 1 65535) )
 
 function scan(){
 
-    (timeout 1 bash -c "cat < /dev/null > /dev/tcp/$1/$2") 2>/dev/n
+    (timeout 1 bash -c "cat < /dev/null > /dev/tcp/$1/$2") 2>/dev/null
 
     if [ $? -eq 0 ]; then
-        echo -e "\n${greenColour}[+] Puerto $2 abierto!${endColour}
+        echo -e "\n${greenColour}[+] Puerto $2 abierto!${endColour}"
     fi
 
 }
@@ -36,7 +36,7 @@ if [ $1 ]; then
         scan $1 $port &
     done
 else
-    echo -e "\n${yellowColour}[!] Usage: $0 <IP adress>${endColour}
+    echo -e "\n${yellowColour}[!] Usage: $0 <IP adress>${endColour}"
 fi
 
 wait
